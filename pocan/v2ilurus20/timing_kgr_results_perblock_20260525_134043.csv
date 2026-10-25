@@ -1,0 +1,17 @@
+Metric,Value,Unit
+Time_CP,68.000000,seconds
+Time_Kalman_Filter,0.000152,seconds
+Time_Complexity_Quant,0.000417,seconds
+Time_Reconciliation,0.007013,seconds
+Time_Privacy_Amplification,0.019410,seconds
+Total_Time_After_Quant,68.000751,seconds
+Total_Time_After_Recon,68.007764,seconds
+Total_Time_After_PA,68.027174,seconds
+KGR_After_Quantization,1.3235,bits/second
+KGR_After_Reconciliation,1.3234,bits/second
+KGR_After_PA,11.2896,bits/second
+Bits_After_Quantization,90,bits
+Bits_After_Reconciliation,90,bits
+Bits_After_PA,768,bits
+Keys_Generated_Total,3,keys
+Keys_Passed_NIST_Entropy,3,keys

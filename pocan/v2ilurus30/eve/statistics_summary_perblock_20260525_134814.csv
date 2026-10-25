@@ -1,0 +1,9 @@
+Metric,Value
+Total_Blocks,2
+Successful_Blocks,1
+Dropped_Blocks,1
+Success_Rate,0.5000
+Drop_Rate,0.5000
+Total_Errors_Before_IR,13
+Total_Errors_After_IR,0
+Avg_Calibrations_Per_Block,0.00
