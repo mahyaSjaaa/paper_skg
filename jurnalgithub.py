@@ -1162,17 +1162,6 @@ if __name__ == "__main__":
     start_wall = time.time()
     start_cpu = time.process_time()
 
-    # KALMAN FILTER PREPROCESSING
-
-    KF_PARAMS = {
-        'a'               : 1,
-        'h'               : 1,
-        'R'               : 1,
-        'Q'               : 0.01,
-        'xaposteriori_0'  : -5,
-        'paposteriori_0'  : 1
-    }
-
     rssi_A = rssi_A_raw
     rssi_B = rssi_B_raw
 
