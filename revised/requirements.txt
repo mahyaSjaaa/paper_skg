@@ -1,0 +1,10 @@
+# python>=3.10 (tested on 3.14.3)
+numpy==2.5.4
+pandas==3.1.0
+scipy==1.18.1
+pycryptodome==4.2.0
+python-dateutil==3.0.0
+six==1.17.0
+tzdata==2026.5
+# optional, only for run_baseline25.py (runs baseline.py of [25] as pushed, which imports bchlib)
+bchlib==2.1.3
