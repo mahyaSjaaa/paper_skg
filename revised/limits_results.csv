@@ -2,7 +2,7 @@
 # Multi-session accumulation: (b), (c) pool bits of several sessions (traces) as if they were one session.
 # Bounds are asymptotic Slepian-Wolf (n*h(KDR) leakage, no finite-blocklength penalty); Eve is ignored beyond the
 # public reconciliation transcript. Bits are mutually accepted labels at the first attempt (NC=0) of the A1 pipeline
-# with m and alpha fixed, or the [27] rule; no tag, control or bitmap leakage in the ideal bounds.
+# with m and alpha fixed, or the Chen et al. rule; no tag, control or bitmap leakage in the ideal bounds.
 # Column prefixes: fe_ = full-entropy bits (1 bit of min-entropy per bit; OPTIMISTIC);
 #   mcv_ = MCV entropy H_MCV of Bob's pooled labels (a2_extract.mcv_by_alphabet: itself an optimistic estimate of
 #   H_min(X|E): unconditional, IID assumed, not validated by SP 800-90B IID tests, N far below 1e6).
@@ -35,10 +35,10 @@ a_session_oracle_best_optimistic,S,2,0.2500,78,47,0.2128,24.1365,1,1,-28.0966,-5
 a_session_oracle_best_optimistic,T,8,0.5000,57,87,0.3333,37.9095,0,2,-32.8917,-58,-81.9822,-58.0000,0.1247,-0.0351,-0.7365,-0.0351,1348,inf,inf,inf,2696.0000
 a_session_oracle_best_optimistic,U,8,0.0000,20,45,0.2000,16.0924,0,1,-27.4868,-57,-56.3943,-57.0000,0.6257,-0.0500,-0.8197,-0.0500,269,inf,inf,inf,538.0000
 a_session_oracle_best_optimistic,V,2,0.2500,16,12,0.0000,0.5944,0,0,-28.0000,-56,-39.4056,-56.0000,0.7500,0.0000,0.0372,0.0000,224,inf,4523,inf,448.0000
-b_group,Pakuwon,rule[27],rule[27],495,1403,0.3828,1058.1031,3,45,16.1733,-86,-328.7236,-108.8620,0.1135,-0.0606,-0.5833,-0.1068,1481,inf,inf,inf,2962.0000
-b_group,Pondok Candra,rule[27],rule[27],221,612,0.2974,408.7537,5,19,34.6202,-50,-168.6261,-101.4758,0.3376,0.0271,-0.5820,-0.2058,498,6778,inf,inf,996.0000
-b_group,Dharmahusada,rule[27],rule[27],300,795,0.3182,570.9815,10,25,37.5474,-31,-186.4711,-118.3531,0.2585,0.0833,-0.4882,-0.2078,650,2208,inf,inf,1300.0000
-b_group,all22,rule[27],rule[27],1016,2810,0.3459,2205.8709,16,90,155.6887,-66,-448.4404,-172.6363,0.1926,-0.0098,-0.4020,-0.1148,873,inf,inf,inf,1746.0000
+b_group,Pakuwon,rule_chen,rule_chen,495,1403,0.3828,1058.1031,3,45,16.1733,-86,-328.7236,-108.8620,0.1135,-0.0606,-0.5833,-0.1068,1481,inf,inf,inf,2962.0000
+b_group,Pondok Candra,rule_chen,rule_chen,221,612,0.2974,408.7537,5,19,34.6202,-50,-168.6261,-101.4758,0.3376,0.0271,-0.5820,-0.2058,498,6778,inf,inf,996.0000
+b_group,Dharmahusada,rule_chen,rule_chen,300,795,0.3182,570.9815,10,25,37.5474,-31,-186.4711,-118.3531,0.2585,0.0833,-0.4882,-0.2078,650,2208,inf,inf,1300.0000
+b_group,all22,rule_chen,rule_chen,1016,2810,0.3459,2205.8709,16,90,155.6887,-66,-448.4404,-172.6363,0.1926,-0.0098,-0.4020,-0.1148,873,inf,inf,inf,1746.0000
 b_group,Pakuwon,2,0.0000,495,471,0.2590,358.4348,7,15,42.2983,-36,-70.2669,-87.8612,0.1663,0.0404,-0.0611,-0.0644,1011,4554,inf,inf,2022.0000
 b_group,Pondok Candra,2,0.0000,221,209,0.1914,134.9931,4,6,21.7877,-42,-52.2192,-85.9084,0.2796,0.0633,-0.0553,-0.1353,601,2905,inf,inf,1202.0000
 b_group,Dharmahusada,2,0.0000,300,270,0.2148,177.7560,4,8,27.3418,-44,-64.9021,-86.3639,0.2245,0.0400,-0.0830,-0.1012,749,4600,inf,inf,1498.0000
@@ -111,13 +111,13 @@ b_group,Pakuwon,8,1.5000,495,150,0.2933,29.5532,2,4,-20.9482,-50,-141.3950,-99.7
 b_group,Pondok Candra,8,1.5000,221,45,0.0889,0.0000,1,1,-14.4738,-52,-59.4738,-83.0000,0.1155,0.0181,-0.0881,-0.1222,1455,10166,inf,inf,2910.0000
 b_group,Dharmahusada,8,1.5000,300,39,0.2051,1.7858,1,1,-29.5506,-52,-66.7648,-81.5805,0.0348,0.0133,-0.0892,-0.0853,4824,13800,inf,inf,9648.0000
 b_group,all22,8,1.5000,1016,234,0.2393,38.5924,4,7,8.2271,-43,-187.1805,-146.5493,0.0475,0.0128,-0.1449,-0.0891,3540,14381,inf,inf,7080.0000
-c_predeclared_primary,Pakuwon,rule[27],rule[27],495,1403,0.3828,1058.1031,3,45,16.1733,-86,-328.7236,-108.8620,0.1135,-0.0606,-0.5833,-0.1068,1481,inf,inf,inf,2962.0000
-c_predeclared_primary,Pondok Candra,rule[27],rule[27],221,612,0.2974,408.7537,5,19,34.6202,-50,-168.6261,-101.4758,0.3376,0.0271,-0.5820,-0.2058,498,6778,inf,inf,996.0000
-c_predeclared_primary,Dharmahusada,rule[27],rule[27],300,795,0.3182,570.9815,10,25,37.5474,-31,-186.4711,-118.3531,0.2585,0.0833,-0.4882,-0.2078,650,2208,inf,inf,1300.0000
-c_predeclared_primary,all22,rule[27],rule[27],1016,2810,0.3459,2205.8709,16,90,155.6887,-66,-448.4404,-172.6363,0.1926,-0.0098,-0.4020,-0.1148,873,inf,inf,inf,1746.0000
-c_predeclared_primary_session_rates,session median,rule[27],rule[27],,,,,,,,,,,0.2971,-0.0446,-1.1241,-0.1151,566,inf,inf,inf,1132.0000
-c_predeclared_primary_session_rates,session min,rule[27],rule[27],,,,,,,,,,,0.0143,-0.0800,-1.8752,-0.9815,11760,inf,inf,inf,23520.0000
-c_predeclared_primary_session_rates,session max,rule[27],rule[27],,,,,,,,,,,1.0499,0.2667,-0.6728,-0.0500,161,690,inf,inf,322.0000
+c_predeclared_primary,Pakuwon,rule_chen,rule_chen,495,1403,0.3828,1058.1031,3,45,16.1733,-86,-328.7236,-108.8620,0.1135,-0.0606,-0.5833,-0.1068,1481,inf,inf,inf,2962.0000
+c_predeclared_primary,Pondok Candra,rule_chen,rule_chen,221,612,0.2974,408.7537,5,19,34.6202,-50,-168.6261,-101.4758,0.3376,0.0271,-0.5820,-0.2058,498,6778,inf,inf,996.0000
+c_predeclared_primary,Dharmahusada,rule_chen,rule_chen,300,795,0.3182,570.9815,10,25,37.5474,-31,-186.4711,-118.3531,0.2585,0.0833,-0.4882,-0.2078,650,2208,inf,inf,1300.0000
+c_predeclared_primary,all22,rule_chen,rule_chen,1016,2810,0.3459,2205.8709,16,90,155.6887,-66,-448.4404,-172.6363,0.1926,-0.0098,-0.4020,-0.1148,873,inf,inf,inf,1746.0000
+c_predeclared_primary_session_rates,session median,rule_chen,rule_chen,,,,,,,,,,,0.2971,-0.0446,-1.1241,-0.1151,566,inf,inf,inf,1132.0000
+c_predeclared_primary_session_rates,session min,rule_chen,rule_chen,,,,,,,,,,,0.0143,-0.0800,-1.8752,-0.9815,11760,inf,inf,inf,23520.0000
+c_predeclared_primary_session_rates,session max,rule_chen,rule_chen,,,,,,,,,,,1.0499,0.2667,-0.6728,-0.0500,161,690,inf,inf,322.0000
 c_predeclared_sensitivity,Pakuwon,4,0.0000,495,942,0.3227,759.8138,8,30,47.3118,-46,-134.8744,-93.9641,0.1764,0.0202,-0.1917,-0.0767,953,9108,inf,inf,1906.0000
 c_predeclared_sensitivity,Pondok Candra,4,0.0000,221,418,0.2440,305.8040,7,13,42.9060,-34,-69.2901,-92.2453,0.3751,0.0995,-0.1325,-0.1640,448,1849,inf,inf,896.0000
 c_predeclared_sensitivity,Dharmahusada,4,0.0000,300,540,0.2704,393.6057,8,17,45.3224,-33,-101.0720,-100.2330,0.2844,0.0767,-0.2036,-0.1474,591,2400,inf,inf,1182.0000

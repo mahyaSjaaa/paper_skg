@@ -2,7 +2,7 @@
 
 (a) per session: oracle best case over a fixed (m, alpha) grid (optimistic, chosen after seeing the data);
 (b) multi-session accumulation per site and over all manifest sessions, one global config at a time;
-(c) minimum samples for a 128-bit key at eps = 2^-20 from PRE-DECLARED global configs: primary = the [27] rule as
+(c) minimum samples for a 128-bit key at eps = 2^-20 from PRE-DECLARED global configs: primary = the Chen et al. rule as
     implemented, sensitivity = fixed (4, 0.0) and (8, 0.0); per-session rate median/min/max; oracle row kept only
     as a labeled optimistic best case.
 """
@@ -26,13 +26,13 @@ PENALTY = 40  # 2 log2(1/eps), eps = 2^-20
 KEY_LEN = 128
 TAG = 16
 GRID = [(m, a) for m in (2, 4, 8) for a in (0.0, 0.25, 0.5, 0.75, 1.0, 1.5)]
-CONFIGS = [None] + GRID  # None = [27] complexity rule (m, alpha per block)
+CONFIGS = [None] + GRID  # None = complexity rule of Chen et al. (m, alpha per block)
 PREDECLARED = [None, (4, 0.0), (8, 0.0)]  # primary first, then sensitivity
 HEADER = f"""# Phase A2 limits analysis (eps = 2^-20, penalty 2*log2(1/eps) = {PENALTY} bits).
 # Multi-session accumulation: (b), (c) pool bits of several sessions (traces) as if they were one session.
 # Bounds are asymptotic Slepian-Wolf (n*h(KDR) leakage, no finite-blocklength penalty); Eve is ignored beyond the
 # public reconciliation transcript. Bits are mutually accepted labels at the first attempt (NC=0) of the A1 pipeline
-# with m and alpha fixed, or the [27] rule; no tag, control or bitmap leakage in the ideal bounds.
+# with m and alpha fixed, or the Chen et al. rule; no tag, control or bitmap leakage in the ideal bounds.
 # Column prefixes: fe_ = full-entropy bits (1 bit of min-entropy per bit; OPTIMISTIC);
 #   mcv_ = MCV entropy H_MCV of Bob's pooled labels (a2_extract.mcv_by_alphabet: itself an optimistic estimate of
 #   H_min(X|E): unconditional, IID assumed, not validated by SP 800-90B IID tests, N far below 1e6).
@@ -55,7 +55,7 @@ def h2(p):
 
 
 def run_cfg(A, B, cfg):
-    """A1 pipeline at NC=0 with (m, alpha) fixed for every block; cfg None keeps the [27] rule."""
+    """A1 pipeline at NC=0 with (m, alpha) fixed for every block; cfg None keeps the Chen et al. rule."""
     orig = j.determine_m_from_complexity, j.guard_band
     if cfg is not None:
         j.determine_m_from_complexity = lambda c: cfg[0]
@@ -117,7 +117,7 @@ def pooled(stats_list):
 
 
 def cfg_cols(cfg):
-    return {"m": "rule[27]" if cfg is None else cfg[0], "alpha": "rule[27]" if cfg is None else cfg[1]}
+    return {"m": "rule_chen" if cfg is None else cfg[0], "alpha": "rule_chen" if cfg is None else cfg[1]}
 
 
 def fmt(v):

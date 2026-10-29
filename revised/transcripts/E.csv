@@ -1,0 +1,21 @@
+seq,sender,message,block,attempt,size_bits,charged_to_leak_EC,bitmap_bits,value
+1,Both,invalid round indices,,,variable,0,0,0;1
+2,Alice,session nonce,,,128,0,0,cf05611dc3c5d05366ac73973592a57e
+3,Alice,LZ-76 component count,0,,4,4,0,13
+4,Alice,acceptance bitmap,0,0,15,0,15,111111111111111
+5,Bob,acceptance bitmap,0,0,15,0,15,111111111111111
+6,Bob,code-offset sketch segment,0,0,31,25,0,0110000100001111110101100011100
+7,Bob,code-offset sketch segment,0,0,31,25,0,0110111100101100000110010110111
+8,Alice,NACK,0,0,1,1,0,0
+9,Alice,acceptance bitmap,0,1,15,0,15,111111011101111
+10,Bob,acceptance bitmap,0,1,15,0,15,111010111011111
+11,Bob,code-offset sketch segment,0,1,31,25,0,1011100111010001011001110111101
+12,Alice,NACK,0,1,1,1,0,0
+13,Alice,LZ-76 component count,1,,4,4,0,14
+14,Alice,acceptance bitmap,1,0,15,0,15,111111111111111
+15,Bob,acceptance bitmap,1,0,15,0,15,111111111111111
+16,Bob,code-offset sketch segment,1,0,31,25,0,1100101101101101101101001000111
+17,Bob,code-offset sketch segment,1,0,31,25,0,0101111100110100100001010111011
+18,Alice,ACK,1,0,1,1,0,1
+19,Bob,verification tag,1,0,16,16,0,5a50
+20,Alice,accept,1,0,1,1,0,1

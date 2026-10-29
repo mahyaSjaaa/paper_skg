@@ -1,0 +1,52 @@
+seq,sender,message,block,attempt,size_bits,charged_to_leak_EC,bitmap_bits,value
+1,Both,invalid round indices,,,variable,0,0,
+2,Alice,session nonce,,,128,0,0,57224ce25eb9b07cddb2fcaa2ac84b61
+3,Alice,LZ-76 component count,0,,4,4,0,8
+4,Alice,acceptance bitmap,0,0,10,0,10,1111111111
+5,Bob,acceptance bitmap,0,0,10,0,10,1111111111
+6,Bob,code-offset sketch segment,0,0,31,25,0,0000100100000000000111101000111
+7,Alice,NACK,0,0,1,1,0,0
+8,Alice,acceptance bitmap,0,1,10,0,10,1110111111
+9,Bob,acceptance bitmap,0,1,10,0,10,1111100010
+10,Bob,code-offset sketch segment,0,1,31,25,0,0001011000110011010100010011100
+11,Alice,ACK,0,1,1,1,0,1
+12,Bob,verification tag,0,1,16,16,0,ac5b
+13,Alice,accept,0,1,1,1,0,1
+14,Alice,LZ-76 component count,1,,4,4,0,9
+15,Alice,acceptance bitmap,1,0,10,0,10,1111111111
+16,Bob,acceptance bitmap,1,0,10,0,10,1111111111
+17,Bob,code-offset sketch segment,1,0,31,25,0,1011100010101011001101100111101
+18,Alice,NACK,1,0,1,1,0,0
+19,Alice,acceptance bitmap,1,1,10,0,10,1110010111
+20,Bob,acceptance bitmap,1,1,10,0,10,1111111111
+21,Bob,code-offset sketch segment,1,1,31,25,0,0111111101110100101000011001011
+22,Alice,NACK,1,1,1,1,0,0
+23,Alice,LZ-76 component count,2,,4,4,0,10
+24,Alice,acceptance bitmap,2,0,10,0,10,1111111111
+25,Bob,acceptance bitmap,2,0,10,0,10,1111111111
+26,Bob,code-offset sketch segment,2,0,31,25,0,1001011111100001000011001011111
+27,Alice,NACK,2,0,1,1,0,0
+28,Alice,acceptance bitmap,2,1,10,0,10,1111111110
+29,Bob,acceptance bitmap,2,1,10,0,10,0111111111
+30,Bob,code-offset sketch segment,2,1,31,25,0,1010101011010000100111000101000
+31,Alice,NACK,2,1,1,1,0,0
+32,Alice,LZ-76 component count,3,,4,4,0,9
+33,Alice,acceptance bitmap,3,0,10,0,10,1111111111
+34,Bob,acceptance bitmap,3,0,10,0,10,1111111111
+35,Bob,code-offset sketch segment,3,0,31,25,0,1010010110101111101001100010101
+36,Alice,NACK,3,0,1,1,0,0
+37,Alice,acceptance bitmap,3,1,10,0,10,1111101111
+38,Bob,acceptance bitmap,3,1,10,0,10,1100011011
+39,Bob,code-offset sketch segment,3,1,31,25,0,1100011010001111010001001110000
+40,Alice,ACK,3,1,1,1,0,1
+41,Bob,verification tag,3,1,16,16,0,1fed
+42,Alice,accept,3,1,1,1,0,1
+43,Alice,LZ-76 component count,4,,4,4,0,8
+44,Alice,acceptance bitmap,4,0,10,0,10,1111111111
+45,Bob,acceptance bitmap,4,0,10,0,10,1111111111
+46,Bob,code-offset sketch segment,4,0,31,25,0,1010001011110101011110101101000
+47,Alice,NACK,4,0,1,1,0,0
+48,Alice,acceptance bitmap,4,1,10,0,10,1111111111
+49,Bob,acceptance bitmap,4,1,10,0,10,1111111111
+50,Bob,code-offset sketch segment,4,1,31,25,0,1110011000010101101100011010101
+51,Alice,NACK,4,1,1,1,0,0

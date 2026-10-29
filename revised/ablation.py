@@ -1,8 +1,8 @@
-"""Component ablation (Sec. 5.3) and configuration R0 of [25] (Sec. 5.4) -> ablation_results.csv, r0_results.csv.
+"""Component ablation (Sec. 5.3) and configuration R0 of Chen et al. [25] (Sec. 5.4) -> ablation_results.csv, r0_results.csv.
 
 R0 is the block layout of [25] (40-sample blocks, remainder dropped) on the revised code-offset reconciliation;
 CSP is the proposed partitioning. Both run with NC = 1 and NC = 3. The bound on l treats every reconciled bit
-as full-entropy (reconciled bits - leakage - 40); r0_results.csv adds l from the MCV estimate of Eq. (5).
+as full-entropy (reconciled bits - leakage - 40); r0_results.csv adds l from the MCV estimate (extractable-length bound l).
 """
 import csv
 import os

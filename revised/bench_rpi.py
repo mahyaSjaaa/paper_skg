@@ -1,11 +1,11 @@
-"""Processing time and energy estimate per session on a Raspberry Pi 5 (Sec. 4.5.3) -> bench_rpi.csv.
+"""Processing time and energy estimate per session on a Raspberry Pi 5 (Section 5.6) -> bench_rpi.csv.
 
 T_proc is the wall-clock time from the aligned RSSI arrays (file already read) to the extraction
-decision: reconciliation with NC = 1 followed by Eq. (5). NIST diagnostics are not timed.
-u_CPU = CPU time / wall time x 100 over all reps (400 % = four busy cores); E_session = P_dyn x T_proc (Eq. (12)),
-with P_dyn = 1.93 W measured by power_pmic.py (pipeline minus idle board power, Eq. (X1)).
-The reference method [25] is timed as configuration R0 (40-sample blocks, residual dropped,
-NC = 3, same reconciliation and Eq. (5)) on the sessions it applies to; [28] runs baseline28.session.
+decision: reconciliation with NC = 1 followed by the extractable-length bound l. NIST diagnostics are not timed.
+u_CPU = CPU time / wall time x 100 over all reps (400 % = four busy cores); E_session = P_dyn x T_proc,
+with P_dyn = 1.93 W measured by power_pmic.py (pipeline minus idle board power).
+The reference method of Chen et al. [25] is timed as configuration R0 (40-sample blocks, residual dropped,
+NC = 3, same reconciliation and bound) on the sessions it applies to; Kurniawan et al. [28] runs baseline28.session.
 
 Run on an otherwise idle Pi:   python -I bench_rpi.py --reps 30
 """

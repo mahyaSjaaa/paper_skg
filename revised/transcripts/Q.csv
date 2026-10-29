@@ -1,0 +1,14 @@
+seq,sender,message,block,attempt,size_bits,charged_to_leak_EC,bitmap_bits,value
+1,Both,invalid round indices,,,variable,0,0,
+2,Alice,session nonce,,,128,0,0,0015887cc2e6704e2e2750dac678acd6
+3,Alice,LZ-76 component count,0,,4,4,0,11
+4,Alice,acceptance bitmap,0,0,15,0,15,111111111111111
+5,Bob,acceptance bitmap,0,0,15,0,15,111111111111111
+6,Bob,code-offset sketch segment,0,0,31,25,0,0011010010001000000011000111100
+7,Bob,code-offset sketch segment,0,0,31,25,0,0000011011001011000001100101101
+8,Alice,NACK,0,0,1,1,0,0
+9,Alice,acceptance bitmap,0,1,15,0,15,111111100011111
+10,Bob,acceptance bitmap,0,1,15,0,15,111111001111111
+11,Bob,code-offset sketch segment,0,1,31,25,0,1000100111001100110000111111010
+12,Bob,code-offset sketch segment,0,1,31,25,0,0100111110011010010000101011101
+13,Alice,NACK,0,1,1,1,0,0

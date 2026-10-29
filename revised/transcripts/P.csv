@@ -1,0 +1,23 @@
+seq,sender,message,block,attempt,size_bits,charged_to_leak_EC,bitmap_bits,value
+1,Both,invalid round indices,,,variable,0,0,
+2,Alice,session nonce,,,128,0,0,6024c94536d53bdc00b30bcf1d43b37c
+3,Alice,LZ-76 component count,0,,4,4,0,9
+4,Alice,acceptance bitmap,0,0,15,0,15,111111111111111
+5,Bob,acceptance bitmap,0,0,15,0,15,111111111111111
+6,Bob,code-offset sketch segment,0,0,31,25,0,0110010100011010011101010011000
+7,Alice,NACK,0,0,1,1,0,0
+8,Alice,acceptance bitmap,0,1,15,0,15,111111111111111
+9,Bob,acceptance bitmap,0,1,15,0,15,111011111111111
+10,Bob,code-offset sketch segment,0,1,31,25,0,0011001100100001100000111010010
+11,Alice,NACK,0,1,1,1,0,0
+12,Alice,LZ-76 component count,1,,4,4,0,11
+13,Alice,acceptance bitmap,1,0,13,0,13,1111111111111
+14,Bob,acceptance bitmap,1,0,13,0,13,1111111111111
+15,Bob,code-offset sketch segment,1,0,31,25,0,1001111001111001111111011111111
+16,Bob,code-offset sketch segment,1,0,31,25,0,0101111100110100100001010111011
+17,Alice,NACK,1,0,1,1,0,0
+18,Alice,acceptance bitmap,1,1,13,0,13,1101111111011
+19,Bob,acceptance bitmap,1,1,13,0,13,1101111111111
+20,Bob,code-offset sketch segment,1,1,31,25,0,0011010011100010000001011101010
+21,Bob,code-offset sketch segment,1,1,31,25,0,1010100010011100000110010110111
+22,Alice,NACK,1,1,1,1,0,0

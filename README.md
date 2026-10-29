@@ -22,7 +22,7 @@ Notes on the data:
 
 ## Reproducing the results
 
-Python 3.11 or later:
+Python 3.10 or later (tested with 3.14.3):
 
 ```
 python -m venv .venv
@@ -40,13 +40,32 @@ Each script reads the traces through `revised/sessions.csv` and writes its CSV n
 | `run_a2_scenarios.py` | `a2_results.csv` | Min-entropy, extractable length, SKR, NIST tests (Section 5.5) |
 | `analysis_limits.py` | `limits_results.csv` | Pooled entropy limits and observation budget (Section 5.5) |
 | `eve_analysis.py` | `eve_results.csv` | Passive eavesdropper (Sections 5.1, 5.5) |
-| `ablation.py` | `ablation_results.csv`, `r0_results.csv` | Component ablation and reference method [25] as configuration R0 (Sections 5.3, 5.4) |
-| `baseline28.py` | `baseline28_results.csv` | Reference method [28] (Section 5.4); `--check` runs its self-test |
+| `transcripts.py` | `transcripts/<scenario>.csv` | Every public message of every session, with the bits charged to the leakage (Sections 3.5, 3.6) |
+| `ablation.py` | `ablation_results.csv`, `r0_results.csv` | Component ablation and the adapted implementation of Chen et al. [25] as configuration R0 (Sections 5.3, 5.4) |
+| `baseline28.py` | `baseline28_results.csv` | Adapted implementation of Kurniawan et al. [28] (Section 5.4); `--check` runs its self-test |
 | `run_baseline25.py` | `baseline25_results.csv` | Runs `baseline.py` unchanged; needs the optional `bchlib` |
 | `bench_rpi.py` | `bench_rpi.csv` | Processing time per session on the Raspberry Pi 5 (Section 5.6) |
 | `power_pmic.py` | `power_pmic.json` | Board power from the Raspberry Pi 5 PMIC (Section 4.1) |
 | `stage_profile.py` | printed | Share of processing time per stage (Section 5.6) |
 
-`bench_rpi.py` and `power_pmic.py` are meant to run on a Raspberry Pi 5; `power_pmic.py` uses `vcgencmd pmic_read_adc`. The CSV files in `revised/` are the results reported in the paper; rerunning the scripts reproduces them exactly, except the timing and power files, which depend on the device.
+`bench_rpi.py` and `power_pmic.py` are meant to run on a Raspberry Pi 5; `power_pmic.py` uses `vcgencmd pmic_read_adc`. The CSV files in `revised/` are the results reported in the paper; rerunning the scripts reproduces them exactly, except the timing and power files, which depend on the device. Run `run_a1_scenarios.py` before `transcripts.py`, which checks its counts against `a1_results.csv`.
 
-Core modules: `jurnal_revisi.py` (valid-pair filtering, conditional signal partitioning, LZ-76 complexity, quantization, code-offset BCH(31,6) reconciliation, leakage accounting) and `a2_extract.py` (MCV min-entropy estimate, extractable length of Eq. (5), Toeplitz extractor, NIST SP 800-22 tests).
+Core modules: `jurnal_revisi.py` (valid-pair filtering, conditional signal partitioning, LZ-76 complexity, quantization, code-offset BCH(31,6) reconciliation, leakage accounting) and `a2_extract.py` (MCV min-entropy estimate, extractable length *l*, Toeplitz extractor, NIST SP 800-22 tests).
+
+## Randomness and seeds
+
+The code-offset codewords, the session nonce, and the extractor seed are drawn from a cryptographically secure generator, as the protocol requires. They change the bits sent on the public channel but not whether a block is reconciled: that depends only on the disagreements between Alice's and Bob's bits, so every number in the results files is the same on every run. `transcripts.py` draws the same values from a seeded generator (`--seed`, default 1), so its files are also identical on every run. No model is trained and no other random choice is made.
+
+## Column names and terms used in the paper
+
+| Column | Term in the paper |
+|---|---|
+| `leak_EC_bits` | leakage *leak*<sub>EC</sub> over all blocks of the session (all-block leakage) |
+| `leak_EC_bits_key_blocks`, `leak_key` | leakage of the reconciled blocks, charged in the extractable length *l* |
+| `leak_EC_bits_conservative`, `leak_cons` | bitmap-inclusive leakage (acceptance bitmaps included) |
+| `l_eps10`, `l_eps20`, `l_eps32` | extractable length *l* at *ε* = 2<sup>−10</sup>, 2<sup>−20</sup>, 2<sup>−32</sup> (negative values mean no key) |
+| `l20_allblocks`, `l_cons_eps20` | *l* at 2<sup>−20</sup> with the all-block and the bitmap-inclusive leakage |
+| `naive_upper_bound` | reconciled bits − leakage − 40: the length *l* would have if every reconciled bit carried one full bit of min-entropy |
+| `rule_chen` (in `limits_results.csv`) | complexity-to-order mapping and guard-band functions of Chen et al. [25] |
+
+The reference methods are adapted implementations, not faithful reproductions: the deviations from the original publications are listed in the paper (Section 4.4) and at the top of `ablation.py` and `baseline28.py`.
