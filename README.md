@@ -38,6 +38,7 @@ Each script reads the traces through `revised/sessions.csv` and writes its CSV n
 |---|---|---|
 | `run_a1_scenarios.py` | `a1_results.csv` | Reliability and rates per session (Sections 5.1, 5.2) |
 | `run_a2_scenarios.py` | `a2_results.csv` | Min-entropy, extractable length, SKR, NIST tests (Section 5.5) |
+| `count_bound.py` | `count_bound_results.csv` | Size bound on the extractable length from the reconciled length and the message sizes only, with no entropy estimate (Sections 3.6, 5.5); checks per block that each reconciled block lowers it by at least 16 bits |
 | `analysis_limits.py` | `limits_results.csv` | Pooled entropy limits and observation budget (Section 5.5) |
 | `eve_analysis.py` | `eve_results.csv` | Passive eavesdropper (Sections 5.1, 5.5) |
 | `transcripts.py` | `transcripts/<scenario>.csv` | Every public message of every session, with the bits charged to the leakage (Sections 3.5, 3.6) |
@@ -48,7 +49,7 @@ Each script reads the traces through `revised/sessions.csv` and writes its CSV n
 | `power_pmic.py` | `power_pmic.json` | Board power from the Raspberry Pi 5 PMIC (Section 4.1) |
 | `stage_profile.py` | printed | Share of processing time per stage (Section 5.6) |
 
-`bench_rpi.py` and `power_pmic.py` are meant to run on a Raspberry Pi 5; `power_pmic.py` uses `vcgencmd pmic_read_adc`. The CSV files in `revised/` are the results reported in the paper; rerunning the scripts reproduces them exactly, except the timing and power files, which depend on the device. Run `run_a1_scenarios.py` before `transcripts.py`, which checks its counts against `a1_results.csv`.
+`bench_rpi.py` and `power_pmic.py` are meant to run on a Raspberry Pi 5; `power_pmic.py` uses `vcgencmd pmic_read_adc`. The CSV files in `revised/` are the results reported in the paper; rerunning the scripts reproduces them exactly, except the timing and power files, which depend on the device. Run `run_a1_scenarios.py` and `run_a2_scenarios.py` before `transcripts.py` and `count_bound.py`, which check their counts against `a1_results.csv` and `a2_results.csv`.
 
 Core modules: `jurnal_revisi.py` (valid-pair filtering, conditional signal partitioning, LZ-76 complexity, quantization, code-offset BCH(31,6) reconciliation, leakage accounting) and `a2_extract.py` (MCV min-entropy estimate, extractable length *l*, Toeplitz extractor, NIST SP 800-22 tests).
 
@@ -65,7 +66,7 @@ The code-offset codewords, the session nonce, and the extractor seed are drawn f
 | `leak_EC_bits_conservative`, `leak_cons` | bitmap-inclusive leakage (acceptance bitmaps included) |
 | `l_eps10`, `l_eps20`, `l_eps32` | extractable length *l* at *ε* = 2<sup>−10</sup>, 2<sup>−20</sup>, 2<sup>−32</sup> (negative values mean no key) |
 | `l20_allblocks`, `l_cons_eps20` | *l* at 2<sup>−20</sup> with the all-block and the bitmap-inclusive leakage |
-| `naive_upper_bound` | reconciled bits − leakage − 40: the length *l* would have if every reconciled bit carried one full bit of min-entropy |
+| `naive_upper_bound`, `size_bound_eps20` | size bound: reconciled bits − leakage − 40, the length *l* would have if every reconciled bit carried one full bit of min-entropy |
 | `rule_chen` (in `limits_results.csv`) | complexity-to-order mapping and guard-band functions of Chen et al. [25] |
 
 The reference methods are adapted implementations, not faithful reproductions: the deviations from the original publications are listed in the paper (Section 4.4) and at the top of `ablation.py` and `baseline28.py`.
