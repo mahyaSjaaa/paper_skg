@@ -1,8 +1,9 @@
 """Component ablation (Sec. 5.3) and configuration R0 of Chen et al. [25] (Sec. 5.4) -> ablation_results.csv, r0_results.csv.
 
 R0 is the block layout of [25] (40-sample blocks, remainder dropped) on the revised code-offset reconciliation;
-CSP is the proposed partitioning. Both run with NC = 1 and NC = 3. The bound on l treats every reconciled bit
-as full-entropy (reconciled bits - leakage - 40); r0_results.csv adds l from the MCV estimate (extractable-length bound l).
+CSP is the proposed partitioning. Both run with NC = 1 and NC = 2, the two settings evaluated in [25],
+and with NC = 3, the default of the re-implementation (sensitivity case). The bound on l treats every reconciled bit
+as full-entropy (reconciled bits - leakage - 40); r0_results.csv adds, for each NC, l from the MCV estimate (extractable-length bound l).
 """
 import csv
 import os
@@ -34,7 +35,7 @@ def csp(A, B, NC):
     return j.reconciliation_per_block_with_calibration(A, B, NC=NC)[2]
 
 
-CONFIGS = [("R0", 3, r0), ("R0", 1, r0), ("CSP", 1, csp), ("CSP", 3, csp)]
+CONFIGS = [("R0", 1, r0), ("R0", 2, r0), ("R0", 3, r0), ("CSP", 1, csp), ("CSP", 2, csp), ("CSP", 3, csp)]
 
 if __name__ == "__main__":
     args = cli()
@@ -52,9 +53,9 @@ if __name__ == "__main__":
                          "ok": st["successful_blocks"], "quantized_bits": st["total_bits_quantization"],
                          "errors_pre": st["total_errors_quantization"], "reconciled_bits": bits,
                          "leak_key_blocks": leak, "l_bound_full_entropy": bits - leak - 40, "note": ""})
-            if (name, NC) == ("R0", 3):
+            if name == "R0":
                 pa = a2.privacy_amplification_eq5(st)
-                r0rows.append({"scenario": sc, "blocks": st["total_blocks"], "ok": st["successful_blocks"],
+                r0rows.append({"NC": NC, "scenario": sc, "blocks": st["total_blocks"], "ok": st["successful_blocks"],
                                "bits": bits, "leak": leak, "H": round(pa["H_total"], 2),
                                "l10": pa["l"][10], "l20": pa["l"][20], "l32": pa["l"][32]})
     for path, rs in (("ablation_results.csv", rows), ("r0_results.csv", r0rows)):
@@ -70,4 +71,6 @@ if __name__ == "__main__":
               f"R_rec {sum(r['ok'] for r in rs)}/{sum(r['blocks'] for r in rs)}, bits {sum(r['reconciled_bits'] for r in rs)}, "
               f"sessions with bits {sum(r['reconciled_bits'] > 0 for r in rs)}, leak {sum(r['leak_key_blocks'] for r in rs)}, "
               f"max bound {max(r['l_bound_full_entropy'] for r in rs)}")
-    print("R0 NC=3 l(2^-20) range:", min(r["l20"] for r in r0rows), "to", max(r["l20"] for r in r0rows))
+    for NC in (1, 2, 3):
+        v = [r["l20"] for r in r0rows if r["NC"] == NC]
+        print(f"R0 NC={NC} l(2^-20) range: {min(v)} to {max(v)}")

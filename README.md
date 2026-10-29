@@ -42,7 +42,7 @@ Each script reads the traces through `revised/sessions.csv` and writes its CSV n
 | `analysis_limits.py` | `limits_results.csv` | Pooled entropy limits and observation budget (Section 5.5) |
 | `eve_analysis.py` | `eve_results.csv` | Passive eavesdropper (Sections 5.1, 5.5) |
 | `transcripts.py` | `transcripts/<scenario>.csv` | Every public message of every session, with the bits charged to the leakage (Sections 3.5, 3.6) |
-| `ablation.py` | `ablation_results.csv`, `r0_results.csv` | Component ablation and the adapted implementation of Chen et al. [25] as configuration R0 (Sections 5.3, 5.4) |
+| `ablation.py` | `ablation_results.csv`, `r0_results.csv` | Component ablation and the adapted implementation of Chen et al. [25] as configuration R0, each with NC = 1, 2 (the settings of [25]) and 3 (Sections 5.3, 5.4) |
 | `baseline28.py` | `baseline28_results.csv` | Adapted implementation of Kurniawan et al. [28] (Section 5.4); `--check` runs its self-test |
 | `run_baseline25.py` | `baseline25_results.csv` | Runs `baseline.py` unchanged; needs the optional `bchlib` |
 | `bench_rpi.py` | `bench_rpi.csv` | Processing time per session on the Raspberry Pi 5 (Section 5.6) |
