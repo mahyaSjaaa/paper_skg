@@ -1,8 +1,8 @@
 # Eve rows aligned with Alice/Bob by probing round (confirmed by the authors). eveA = Eve's RSSI of Alice's packets, eveB = of Bob's packets. Agreement at Bob's accepted indices, first attempt. Recovery: Alice's decoder run on Bob's public sketch with Eve's bits.
 scenario,site,link,rounds,rounds_all_valid,r_alice_bob,r_bob_eveA,r_alice_eveA,r_alice_eveB,r_bob_eveB,bob_bits_first_attempt,alice_bob_agreement,eve_bits_compared,eve_bob_agreement,reconciled_blocks,eve_recovered_with_own_bits,one_segment_blocks_recoverable_from_transcript
-B,Pakuwon,V2I,89,89,0.900,0.053,0.037,-0.165,-0.185,240,0.613,240,0.500,4,0,4
+B,Pakuwon,V2I,39,39,0.939,-0.089,-0.102,-0.308,-0.217,90,0.756,90,0.433,1,0,0
 C,Pakuwon,V2I,35,35,0.897,-0.194,-0.191,-0.151,-0.112,90,0.656,90,0.456,0,0,0
 D,Pakuwon,V2I,50,50,0.873,-0.009,0.016,0.257,0.303,150,0.547,150,0.527,2,2,2
-L,Pakuwon,V2V,94,94,0.846,0.008,0.029,-0.081,0.017,270,0.556,270,0.507,2,1,2
+L,Pakuwon,V2V,41,41,0.846,-0.049,0.131,-0.300,-0.201,120,0.533,120,0.500,1,0,1
 M,Pakuwon,V2V,26,26,0.840,-0.049,-0.085,-0.018,-0.161,78,0.628,78,0.423,0,0,0
 N,Pakuwon,V2V,19,19,0.955,-0.302,-0.225,0.171,0.183,45,0.756,45,0.467,1,0,0

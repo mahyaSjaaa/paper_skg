@@ -1,6 +1,6 @@
 scenario,site,link,n_raw,n_valid,pushed_blocks,pushed_ok,pushed_kdr_pre,pushed_bits,pushed_post_err,pushed_eve_zero_guess,pushed_eve_crc_search,pushed_note,filtered_blocks,filtered_ok,filtered_kdr_pre,filtered_bits,filtered_post_err,filtered_eve_zero_guess,filtered_eve_crc_search,filtered_note,r0_blocks,r0_ok,r0_kdr_pre,r0_bits,r0_note
-A,Pakuwon,V2I,80,80,2,2,0.2100,200,0,0,2,,2,2,0.2100,200,0,0,2,,2,2,0.2100,131,
-B,Pakuwon,V2I,89,89,2,2,0.2208,240,0,1,2,,2,2,0.2208,240,0,1,2,,2,2,0.2208,159,
+A,Pakuwon,V2I,42,42,1,1,0.2167,120,0,0,1,,1,1,0.2167,120,0,0,1,,1,1,0.2167,51,
+B,Pakuwon,V2I,39,39,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 C,Pakuwon,V2I,35,35,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 D,Pakuwon,V2I,50,50,1,1,0.2750,120,0,0,1,,1,1,0.2750,120,0,0,1,,1,1,0.2750,51,
 E,Pondok Candra,V2I,34,32,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
@@ -9,8 +9,8 @@ G,Dharmahusada,V2I,31,31,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,n
 H,Dharmahusada,V2I,30,30,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 I,Dharmahusada,V2I,38,37,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 J,Dharmahusada,V2I,31,31,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
-K,Pakuwon,V2V,102,102,2,2,0.4042,240,0,2,2,,2,2,0.4042,240,0,2,2,,2,1,0.4042,18,
-L,Pakuwon,V2V,94,94,2,2,0.3667,240,0,1,2,,2,2,0.3667,240,0,1,2,,2,1,0.3667,51,
+K,Pakuwon,V2V,41,41,1,1,0.3833,120,0,1,1,,1,1,0.3833,120,0,1,1,,1,1,0.3833,18,
+L,Pakuwon,V2V,41,41,1,1,0.3000,120,0,0,1,,1,1,0.3000,120,0,0,1,,1,1,0.3000,51,
 M,Pakuwon,V2V,26,26,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 N,Pakuwon,V2V,19,19,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)
 O,Pondok Candra,V2V,26,26,0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,,,,no output (fewer than 40 samples),0,0,,0,no output (fewer than 40 samples)

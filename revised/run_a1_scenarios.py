@@ -24,24 +24,39 @@ COLS = ["scenario", "site", "link", "n_raw", "n_valid", "qbs", "total_blocks", "
 
 def cli():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--manifest", default=MANIFEST, help="CSV: scenario,site,link,...,ab_file,eve_file,eve_rows_match")
+    ap.add_argument("--manifest", default=MANIFEST, help="CSV: scenario,site,link,...,ab_file,eve_file,eve_rows_match,rounds")
     ap.add_argument("--base", default=REPO, help="directory the manifest file paths are relative to")
     return ap.parse_args()
 
 
+# probing rounds used per file, filled by load_sessions from the manifest column `rounds` ("first-last", 1-indexed;
+# empty = all rows). The Eve file of a session uses the same rounds, since its rows are aligned with the trace.
+# ponytail: keyed by path so every script that calls read_rssi(s["ab_path"]) gets the range without a signature change
+ROUNDS = {}
+
+
 def load_sessions(manifest=MANIFEST, base=REPO):
-    """Manifest rows with absolute ab_path / eve_path added."""
+    """Manifest rows with absolute ab_path / eve_path added; registers each session's round range."""
     with open(manifest, newline="", encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))
     for r in rows:
         r["ab_path"], r["eve_path"] = os.path.join(base, r["ab_file"]), os.path.join(base, r["eve_file"])
+        if r.get("rounds"):
+            first, last = map(int, r["rounds"].split("-"))
+            for p in (r["ab_path"], r["eve_path"]):
+                ROUNDS[os.path.normcase(os.path.abspath(p))] = (first, last)
     return rows
 
 
 def read_rssi(path, cols=("rssi_alice", "rssi_bob")):
-    """Only the named columns are used; extra Unnamed columns are ignored. Some files carry a BOM."""
+    """Only the named columns are used; extra Unnamed columns are ignored. Some files carry a BOM.
+    Rows outside the session's round range (manifest column `rounds`) are dropped."""
     df = pd.read_csv(path, encoding="utf-8-sig")
     assert set(cols) <= set(df.columns), f"{path}: columns {list(df.columns)}"
+    rng = ROUNDS.get(os.path.normcase(os.path.abspath(path)))
+    if rng:
+        assert rng[1] <= len(df), f"{path}: rounds {rng} beyond {len(df)} rows"
+        df = df.iloc[rng[0] - 1:rng[1]]
     return tuple(df[c].values for c in cols)
 
 

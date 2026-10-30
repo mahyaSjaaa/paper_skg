@@ -11,11 +11,12 @@ Code, RSSI traces, and per-session results for the paper. Everything reported in
 | `darmahusada/` | G to J (V2I) | Alice/Bob traces (the Eve files used are in `data_mentah_mashabib/Dharmahusada/`) |
 | `data_mentah_mashabib/Dharmahusada/` | S to V (V2V); Eve recordings for G to J | Alice/Bob traces and Eve recordings |
 
-`revised/sessions.csv` maps every scenario (A to V) to its site, link type, mobility pattern, speed, trace file, and Eve file. Each trace is one pass of the vehicles through the site.
+`revised/sessions.csv` maps every scenario (A to V) to its site, link type, mobility pattern, speed, trace file, Eve file, and the probing rounds used from the trace (column `rounds`, first to last, 1-indexed; empty means all rows). Each trace is one pass of the vehicles through the site. The Eve file of a session uses the same rounds, since its rows are aligned with the trace.
 
 Trace format (`combined_*.csv`): one row per probing round, written after Alice sends a probe and Bob replies. Columns `rssi_alice` and `rssi_bob` hold the RSSI in dBm; a zero marks a packet that was not received. Rows with a zero or missing value are removed before processing. Eve files (`filtered_eve_*.csv`) hold Eve's RSSI of Alice's packets (`alice_rssi`) and of Bob's packets (`bob_rssi`).
 
 Notes on the data:
+- Some stored traces overlap: rows 43 to 77 of trace A repeat all of trace C, rows 40 to 89 of trace B repeat all of trace D, traces K and L share rows 42 to 94, and the last eight rows of K repeat rows of that shared part. So that each round is counted in one session only, `rounds` keeps the first 42, 39, 41, and 41 rows of A, B, K, and L. The trace files themselves are unchanged. `test_a1.py` checks that no five consecutive rows appear twice in the rounds used.
 - Only the Eve files of sessions B, C, D, L, M, and N have one row per probing round of the Alice/Bob trace; the Eve analysis uses these six.
 - `data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_searah20.csv` is a copy of the `searah30` file (session L); the original Eve recording of session K is not available.
 - The `combined_*.csv` and `filtered_eve_*.csv` files in the repository root, `jurnalgithub.py`, `baseline.py`, the per-scenario subfolders of `pocan/` and `darmahusada/` (outputs of the earlier code), and `pocan/venv/` are earlier working files. They are kept for reference and are not used by the scripts in `revised/`.

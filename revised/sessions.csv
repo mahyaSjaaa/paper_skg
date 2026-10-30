@@ -1,23 +1,23 @@
-scenario,site,link,mobility,speed_kmh,ab_file,eve_file,eve_rows_match
-A,Pakuwon,V2I,Straight road,20,data_mentah_mashabib/Pakuwon/combined_v2i lurus 20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i lurus 20.csv,no
-B,Pakuwon,V2I,Straight road,30,data_mentah_mashabib/Pakuwon/combined_v2i lurus 30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i lurus 30.csv,yes
-C,Pakuwon,V2I,Turn,20,data_mentah_mashabib/Pakuwon/combined_v2i belok 20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i belok 20.csv,yes
-D,Pakuwon,V2I,Turn,30,data_mentah_mashabib/Pakuwon/combined_v2i belok 30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i belok 30.csv,yes
-E,Pondok Candra,V2I,Straight road,20,data_mentah_mashabib/PondokCandra/combined_v2ilurus20km.csv,data_mentah_mashabib/PondokCandra/filtered_evev2ilurus20km.csv,no
-F,Pondok Candra,V2I,Straight road,30,data_mentah_mashabib/PondokCandra/combined_v2ilurus30km.csv,data_mentah_mashabib/PondokCandra/filtered_evev2ilurus30km.csv,no
-G,Dharmahusada,V2I,Turn,20,darmahusada/combined_V2Ibelok20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ibelok20.csv,no
-H,Dharmahusada,V2I,Turn,30,darmahusada/combined_V2Ibelok30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ibelok30.csv,no
-I,Dharmahusada,V2I,Straight road,20,darmahusada/combined_V2Ilurus20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ilurus20.csv,no
-J,Dharmahusada,V2I,Straight road,30,darmahusada/combined_V2Ilurus30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ilurus30.csv,no
-K,Pakuwon,V2V,Same direction,20,data_mentah_mashabib/Pakuwon/combined_V2V_searah20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_searah20.csv,no
-L,Pakuwon,V2V,Same direction,30,data_mentah_mashabib/Pakuwon/combined_V2V_searah30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_searah30.csv,yes
-M,Pakuwon,V2V,Opposite directions,20,data_mentah_mashabib/Pakuwon/combined_V2V_berlawanan20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_berlawanan20.csv,yes
-N,Pakuwon,V2V,Opposite directions,30,data_mentah_mashabib/Pakuwon/combined_V2V_berlawanan30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_berlawanan30.csv,yes
-O,Pondok Candra,V2V,Opposite directions,20,data_mentah_mashabib/PondokCandra/combined_v2vlawan20.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vlawan20.csv,no
-P,Pondok Candra,V2V,Opposite directions,30,data_mentah_mashabib/PondokCandra/combined_v2vlawan30.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vlawan30.csv,no
-Q,Pondok Candra,V2V,Same direction,20,data_mentah_mashabib/PondokCandra/combined_v2vsearah20.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vsearah20.csv,no
-R,Pondok Candra,V2V,Same direction,30,data_mentah_mashabib/PondokCandra/combined_v2vsearah30.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vsearah30.csv,no
-S,Dharmahusada,V2V,Same direction,20,data_mentah_mashabib/Dharmahusada/combined_V2Vsearah20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vsearah20.csv,no
-T,Dharmahusada,V2V,Same direction,30,data_mentah_mashabib/Dharmahusada/combined_V2Vsearah30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vsearah30.csv,no
-U,Dharmahusada,V2V,Opposite directions,20,data_mentah_mashabib/Dharmahusada/combined_V2Vberlawanan20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vberlawanan20.csv,no
-V,Dharmahusada,V2V,Opposite directions,30,data_mentah_mashabib/Dharmahusada/combined_V2Vberlawanan30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vberlawanan30.csv,no
+scenario,site,link,mobility,speed_kmh,ab_file,eve_file,eve_rows_match,rounds
+A,Pakuwon,V2I,Straight road,20,data_mentah_mashabib/Pakuwon/combined_v2i lurus 20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i lurus 20.csv,no,1-42
+B,Pakuwon,V2I,Straight road,30,data_mentah_mashabib/Pakuwon/combined_v2i lurus 30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i lurus 30.csv,yes,1-39
+C,Pakuwon,V2I,Turn,20,data_mentah_mashabib/Pakuwon/combined_v2i belok 20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i belok 20.csv,yes,
+D,Pakuwon,V2I,Turn,30,data_mentah_mashabib/Pakuwon/combined_v2i belok 30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_v2i belok 30.csv,yes,
+E,Pondok Candra,V2I,Straight road,20,data_mentah_mashabib/PondokCandra/combined_v2ilurus20km.csv,data_mentah_mashabib/PondokCandra/filtered_evev2ilurus20km.csv,no,
+F,Pondok Candra,V2I,Straight road,30,data_mentah_mashabib/PondokCandra/combined_v2ilurus30km.csv,data_mentah_mashabib/PondokCandra/filtered_evev2ilurus30km.csv,no,
+G,Dharmahusada,V2I,Turn,20,darmahusada/combined_V2Ibelok20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ibelok20.csv,no,
+H,Dharmahusada,V2I,Turn,30,darmahusada/combined_V2Ibelok30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ibelok30.csv,no,
+I,Dharmahusada,V2I,Straight road,20,darmahusada/combined_V2Ilurus20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ilurus20.csv,no,
+J,Dharmahusada,V2I,Straight road,30,darmahusada/combined_V2Ilurus30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Ilurus30.csv,no,
+K,Pakuwon,V2V,Same direction,20,data_mentah_mashabib/Pakuwon/combined_V2V_searah20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_searah20.csv,no,1-41
+L,Pakuwon,V2V,Same direction,30,data_mentah_mashabib/Pakuwon/combined_V2V_searah30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_searah30.csv,yes,1-41
+M,Pakuwon,V2V,Opposite directions,20,data_mentah_mashabib/Pakuwon/combined_V2V_berlawanan20.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_berlawanan20.csv,yes,
+N,Pakuwon,V2V,Opposite directions,30,data_mentah_mashabib/Pakuwon/combined_V2V_berlawanan30.csv,data_mentah_mashabib/Pakuwon/filtered_eve_combined_V2V_berlawanan30.csv,yes,
+O,Pondok Candra,V2V,Opposite directions,20,data_mentah_mashabib/PondokCandra/combined_v2vlawan20.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vlawan20.csv,no,
+P,Pondok Candra,V2V,Opposite directions,30,data_mentah_mashabib/PondokCandra/combined_v2vlawan30.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vlawan30.csv,no,
+Q,Pondok Candra,V2V,Same direction,20,data_mentah_mashabib/PondokCandra/combined_v2vsearah20.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vsearah20.csv,no,
+R,Pondok Candra,V2V,Same direction,30,data_mentah_mashabib/PondokCandra/combined_v2vsearah30.csv,data_mentah_mashabib/PondokCandra/filtered_evev2vsearah30.csv,no,
+S,Dharmahusada,V2V,Same direction,20,data_mentah_mashabib/Dharmahusada/combined_V2Vsearah20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vsearah20.csv,no,
+T,Dharmahusada,V2V,Same direction,30,data_mentah_mashabib/Dharmahusada/combined_V2Vsearah30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vsearah30.csv,no,
+U,Dharmahusada,V2V,Opposite directions,20,data_mentah_mashabib/Dharmahusada/combined_V2Vberlawanan20.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vberlawanan20.csv,no,
+V,Dharmahusada,V2V,Opposite directions,30,data_mentah_mashabib/Dharmahusada/combined_V2Vberlawanan30.csv,data_mentah_mashabib/Dharmahusada/filtered_eve_V2Vberlawanan30.csv,no,

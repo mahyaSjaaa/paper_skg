@@ -535,6 +535,26 @@ def check_smoke_real_trace():
           f"bits={len(key)} leak={st['leak_EC_bits']} cons={st['leak_EC_bits_conservative']} {lb})")
 
 
+def check_manifest_rounds_disjoint():
+    """After the manifest round ranges, no 5 consecutive (Alice, Bob) rows appear twice (across or within sessions),
+    and no used Eve file repeats another. Pins the trimmed lengths of A, B, K and L."""
+    from run_a1_scenarios import load_sessions, read_rssi
+    ss = load_sessions()
+    ab = {s["scenario"]: list(zip(*read_rssi(s["ab_path"]))) for s in ss}
+    eve = {s["scenario"]: list(zip(*read_rssi(s["eve_path"], cols=("alice_rssi", "bob_rssi"))))
+           for s in ss if s["eve_rows_match"] == "yes"}
+    assert {k: len(ab[k]) for k in "ABKL"} == {"A": 42, "B": 39, "K": 41, "L": 41}, {k: len(ab[k]) for k in "ABKL"}
+    for k in eve:
+        assert len(eve[k]) == len(ab[k]), (k, len(eve[k]), len(ab[k]))
+    for data in (ab, eve):
+        seen = {}
+        for k, rows in data.items():
+            for i in range(len(rows) - 4):
+                w = tuple(rows[i:i + 5])
+                prev = seen.setdefault(w, (k, i))  # a repeat inside one session also fails
+                assert prev == (k, i), f"{k} round {i + 1} repeats {prev[0]} round {prev[1] + 1}"
+
+
 CHECKS = [
     check_constants, check_codebook, check_decode,
     check_roundtrip, check_empty_block,
@@ -546,7 +566,7 @@ CHECKS = [
     check_leak_formula_synthetic,
     check_mutual_accept, check_filter_valid_pairs, check_compute_qbs, check_quantizer_lengths,
     check_residual_processed, check_residual_boundaries, check_too_short_raises,
-    check_smoke_real_trace,
+    check_smoke_real_trace, check_manifest_rounds_disjoint,
 ]
 
 
